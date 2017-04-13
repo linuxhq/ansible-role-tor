@@ -1,0 +1,34 @@
+---
+- name: Ensure that tor and torsocks is installed
+  tags: tor
+  yum:
+    enablerepo: epel
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  register: tor_yum
+  with_items:
+    - tor
+    - torsocks
+
+- block:
+  - name: Apply torrc and torsocks configurations
+    template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dst }}"
+      owner: root
+      group: root
+      mode: 0644
+    notify: restart tor-master
+    with_items:
+      - { src: torrc.j2, dst: /etc/tor/torrc }
+      - { src: torsocks.conf.j2, dst: /etc/tor/torsocks.conf }
+
+  - name: Start the tor-master service and enable on boot
+    service:
+      enabled: yes
+      name: tor-master
+      state: started
+  tags: tor
+  when: tor_yum|success
+...

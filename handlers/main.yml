@@ -1,0 +1,7 @@
+---
+- name: restart tor-master
+  tags: tor
+  service:
+    name: tor-master
+    state: restarted
+...

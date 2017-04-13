@@ -304,3 +304,10 @@ PublishServerDescriptor 1
 #PublishServerDescriptor 0
 {% endif %}
 
+{% if tor_additional_parameters is defined %}
+# Additional tor parameters
+{%   for key, value in tor_additional_parameters.iteritems()|sort %}
+{{ key }} {{ value }}
+{%   endfor %}
+{% endif %}
+

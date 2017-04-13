@@ -10,7 +10,7 @@ None
 
 ## Role Variables
 
-Available variables are listed below, along with default values:
+All default variables are listed below
 
     tor_datadirectory: /var/lib/tor
     tor_controlsocket: /run/tor/control
@@ -26,7 +26,7 @@ Available variables are listed below, along with default values:
     torsocks_onionaddrrange: 127.42.42.0/24
     torsocks_torport: 9050
 
-Additional tor variables available, not defined by default:
+Additional variables for tor listed below (per default torrc)
 
     tor_accountingmax: '40 GBytes'
     tor_accountingstart: 'day 00:00'
@@ -70,10 +70,17 @@ Additional tor variables available, not defined by default:
       - 'reject *'
     tor_socksport: 9050
 
-Additional torsocks variables available, not defined by default:
+Additional variables for torsocks listed below (per default torsocks.conf)
 
     torsocks_password: password
     torsocks_username: login
+
+You can also define additional tor variables by defining the following
+
+    tor_additional_parameters:
+      CountPrivateBandwidth: 1
+      LearnCircuitBuildTimeout: 1
+      FirewallPorts: 6667
 
 ## Dependencies
 

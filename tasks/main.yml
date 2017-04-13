@@ -19,15 +19,15 @@
       owner: root
       group: root
       mode: 0644
-    notify: restart tor-master
+    notify: restart tor
     with_items:
       - { src: torrc.j2, dst: /etc/tor/torrc }
       - { src: torsocks.conf.j2, dst: /etc/tor/torsocks.conf }
 
-  - name: Start the tor-master service and enable on boot
+  - name: Start the tor service and enable on boot
     service:
       enabled: yes
-      name: tor-master
+      name: tor
       state: started
   tags: tor
   when: tor_yum|success

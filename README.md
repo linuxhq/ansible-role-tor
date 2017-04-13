@@ -84,6 +84,13 @@ Additional torsocks variables available, not defined by default:
     - hosts: servers
       roles:
         - role: linuxhq.tor
+          tor_accountingmax: '20 GB'
+          tor_accountingstart: 'day 00:00'
+          tor_contactinfo: 'Tor Project <tor@linuxhq.org>'
+          tor_exitpolicy:
+            - 'reject *:*'
+          tor_orport: 9001
+          tor_nickname: linuxhq
     
 ## License
 

@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/linuxhq/ansible-role-tor.svg?branch=master)](https://travis-ci.org/linuxhq/ansible-role-tor)
 
-RHEL/CentOS -  Anonymizing overlay network for TCP
+RHEL/CentOS - Anonymizing overlay network for TCP
 
 ## Requirements
 

@@ -168,7 +168,7 @@ RelayBandwidthRate {{ tor_relaybandwidthrate }}
 #RelayBandwidthRate 100 KBytes  # Throttle traffic to 100KB/s (800Kbps)
 {% endif %}
 {% if tor_relaybandwidthburst is defined %}
-RelayBandwidthBurst {{ tor_tor_relaybandwidthburst }}
+RelayBandwidthBurst {{ tor_relaybandwidthburst }}
 {% else %}
 #RelayBandwidthBurst 200 KBytes # But allow bursts up to 200KB (1600Kb)
 {% endif %}

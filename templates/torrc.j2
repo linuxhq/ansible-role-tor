@@ -239,7 +239,7 @@ DirPortFrontPage {{ tor_dirportfrontpage }}
 ## However, you should never include a bridge's fingerprint here, as it would
 ## break its concealability and potentially reveal its IP/TCP address.
 {% if tor_myfamily is defined %}
-MyFamily {{ tor_myfqmily|join(',') }}
+MyFamily {{ tor_myfamily|join(',') }}
 {% else %}
 #MyFamily $keyid,$keyid,...
 {% endif %}

@@ -1,15 +1,13 @@
 ---
-tor_datadirectory: /var/lib/tor
-tor_controlsocket: /run/tor/control
-tor_controlsocketsgroupwritable: True
-tor_cookieauthentication: True
-tor_cookieauthfile: /run/tor/control.authcookie
-tor_cookieauthfilegroupreadable: True
-tor_runasdaemon: False
-torsocks_address: 127.0.0.1
-torsocks_allowinbound: False
-torsocks_allowoutboundlocalhost: False
-torsocks_isolatepid: False
-torsocks_onionaddrrange: 127.42.42.0/24
-torsocks_torport: 9050
+torrc:
+  CookieAuthentication: 1
+  CookieAuthFile: /run/tor/control.authcookie
+  CookieAuthFileGroupReadable: 1
+  ControlSocket: /run/tor/control
+  ControlSocketsGroupWritable: 1
+torrc_hiddenservices: []
+torsocks:
+  OnionAddrRange: 127.42.42.0/24
+  TorAddress: 127.0.0.1
+  TorPort: 9050
 ...

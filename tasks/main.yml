@@ -1,18 +1,18 @@
 ---
-- name: Ensure that tor and torsocks is installed
+- name: Ensure that the tor and torsocks packages are installed
   tags: tor
+  become: true
   yum:
     enablerepo: epel
     name: "{{ item }}"
     state: present
-    update_cache: yes
   register: tor_yum
   with_items:
     - tor
     - torsocks
 
 - block:
-  - name: Apply torrc and torsocks configurations
+  - name: Applying torrc and torsocks configurations
     template:
       src: "{{ item.src }}"
       dest: "{{ item.dst }}"
@@ -24,11 +24,12 @@
       - { src: torrc.j2, dst: /etc/tor/torrc }
       - { src: torsocks.conf.j2, dst: /etc/tor/torsocks.conf }
 
-  - name: Start the tor service and enable on boot
+  - name: Enable and start the tor service on boot
     service:
       enabled: yes
       name: tor
       state: started
   tags: tor
+  become: true
   when: tor_yum|success
 ...

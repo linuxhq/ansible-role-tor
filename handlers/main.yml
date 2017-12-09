@@ -1,6 +1,7 @@
 ---
 - name: restart tor
   tags: tor
+  become: true
   service:
     name: tor
     state: restarted

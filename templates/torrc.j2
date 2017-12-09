@@ -22,5 +22,6 @@ HiddenServiceDir /var/lib/tor/{{ service }}
 HiddenServicePort {{ port.src }} {{ port.dst }}
 {%       endif %}
 {%     endfor %}
+
 {%   endfor %}
 {% endif %}

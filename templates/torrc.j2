@@ -13,8 +13,8 @@
 {%     endfor %}
 {%   endif %}
 {% endfor %}
-
 {% if torrc_hiddenservices is defined %}
+
 {%   for service in torrc_hiddenservices %}
 HiddenServiceDir /var/lib/tor/{{ service }}
 {%     for port in torrc_hiddenservices[service].ports %}

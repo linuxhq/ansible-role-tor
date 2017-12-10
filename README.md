@@ -36,19 +36,28 @@ All default variables are listed below
           torrc:
             AccountingMax: '30 GB'
             AccountingStart: 'day 00:00'
+            CellStatistics: 1
             CookieAuthentication: 1
             CookieAuthFile: /run/tor/control.authcookie
             CookieAuthFileGroupReadable: 1
+            ConnDirectionStatistics: 1
+            ConnLimit: 1000
             ContactInfo: 'Tor Project <tor@linuxhq.org>'
             ControlSocket: /run/tor/control
             ControlSocketsGroupWritable: 1
+            DirReqStatistics: 1
+            EntryStatistics: 1
             ExitPolicy:
               - 'reject *:*'
-            ORPort: 9001
+            ExitRelay: 0
+            ExtraInfoStatistics: 1
+            HiddenServiceStatistics: 1
             Nickname: "{{ inventory_hostname.split('.')[3] }}"
+            ORPort: 9001
             RelayBandwidthBurst: '1024 KBytes'
             RelayBandwidthRate: '512 KBytes'
-    
+            Sandbox: 1
+
 ## License
 
 GPLv3

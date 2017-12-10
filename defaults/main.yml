@@ -7,6 +7,9 @@ torrc:
   ControlSocketsGroupWritable: 1
 torrc_hiddenservices: []
 torsocks:
+  AllowInbound: 0
+  AllowOutboundLocalhost: 0
+  IsolatePID: 0
   OnionAddrRange: 127.42.42.0/24
   TorAddress: 127.0.0.1
   TorPort: 9050

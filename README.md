@@ -60,6 +60,13 @@ All default variables are listed below
             RelayBandwidthBurst: '1024 KBytes'
             RelayBandwidthRate: '512 KBytes'
             Sandbox: 1
+          torsocks:
+            AllowInbound: 0
+            AllowOutboundLocalhost: 0
+            IsolatePID: 1
+            OnionAddrRange: 127.42.42.0/24
+            TorAddress: 127.0.0.1
+            TorPort: 9050
 
 ## License
 

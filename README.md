@@ -60,6 +60,14 @@ All default variables are listed below
             RelayBandwidthBurst: '1024 KBytes'
             RelayBandwidthRate: '512 KBytes'
             Sandbox: 1
+          torrc_hiddenservices:
+            - dir: external
+              ports:
+                80: '127.0.0.1:80'
+              private_key: |
+                -----BEGIN RSA PRIVATE KEY-----
+                {...}
+                -----END RSA PRIVATE KEY-----
           torsocks:
             AllowInbound: 0
             AllowOutboundLocalhost: 0

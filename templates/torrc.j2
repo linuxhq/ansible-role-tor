@@ -13,15 +13,12 @@
 {%     endfor %}
 {%   endif %}
 {% endfor %}
-{% if torrc_hiddenservices is defined %}
-
+{% if torrc_hiddenservices|length > 0 %}
 {%   for service in torrc_hiddenservices %}
-HiddenServiceDir /var/lib/tor/{{ service }}
-{%     for port in torrc_hiddenservices[service].ports %}
-{%       if port.src is defined and port.dst is defined %}
-HiddenServicePort {{ port.src }} {{ port.dst }}
-{%       endif %}
-{%     endfor %}
 
+HiddenServiceDir /var/lib/tor/{{ service.dir }}
+{%     for src, dst in service.ports.iteritems()|sort %}
+HiddenServicePort {{ src }} {{ dst }}
+{%     endfor %}
 {%   endfor %}
 {% endif %}

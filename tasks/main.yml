@@ -41,7 +41,7 @@
     - item.dir is defined
     - tor_yum is success
 
-- name: Applying tor hidden services private keys (if applicable)
+- name: Attempting to overlay hidden services private keys, if applicable
   tags: tor
   become: true
   no_log: true

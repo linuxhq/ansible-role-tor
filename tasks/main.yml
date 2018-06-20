@@ -1,15 +1,13 @@
 ---
-- name: Ensure that the tor and torsocks packages are installed
+- name: Attempting to execute os family specific tasks (Debian)
   tags: tor
-  become: true
-  yum:
-    enablerepo: epel
-    name: "{{ item }}"
-    state: present
-  register: tor_yum
-  with_items:
-    - tor
-    - torsocks
+  include_tasks: "tor_{{ ansible_os_family|lower }}.yml"
+  when: ansible_os_family == 'Debian'
+
+- name: Attempting to execute os family specific tasks (RedHat)
+  tags: tor
+  include_tasks: "tor_{{ ansible_os_family|lower }}.yml"
+  when: ansible_os_family == 'RedHat'
 
 - name: Applying torrc and torsocks configurations
   tags: tor
@@ -24,7 +22,7 @@
   with_items:
     - { src: torrc.j2, dst: /etc/tor/torrc }
     - { src: torsocks.conf.j2, dst: /etc/tor/torsocks.conf }
-  when: tor_yum is success
+  when: tor_package is success
 
 - name: Attempting to create tor hidden services directories, if applicable
   tags: tor
@@ -32,14 +30,14 @@
   no_log: true
   file:
     path: "/var/lib/tor/{{ item.dir }}"
-    owner: toranon
-    group: toranon
+    owner: "{{ tor_owner }}"
+    group: "{{ tor_group }}"
     mode: 0700
     state: directory
   with_items: "{{ torrc_hiddenservices }}"
   when:
     - item.dir is defined
-    - tor_yum is success
+    - tor_package is success
 
 - name: Attempting to overlay hidden services private keys, if applicable
   tags: tor
@@ -48,15 +46,15 @@
   template:
     src: torrc_hiddenservices.j2
     dest: "/var/lib/tor/{{ item.dir }}/private_key"
-    owner: toranon
-    group: toranon
+    owner: "{{ tor_owner }}"
+    group: "{{ tor_group }}"
     mode: 0600
   notify: restart tor
   with_items: "{{ torrc_hiddenservices }}"
   when:
     - item.dir is defined
     - item.private_key is defined
-    - tor_yum is success
+    - tor_package is success
 
 - name: Ensure that tor is started and enabled on boot
   tags: tor
@@ -65,5 +63,5 @@
     enabled: yes
     name: tor
     state: started
-  when: tor_yum is success
+  when: tor_package is success
 ...

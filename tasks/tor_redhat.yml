@@ -1,0 +1,19 @@
+---
+- name: Attempting to set os family specific facts (RedHat)
+  tags: tor
+  set_fact:
+    tor_group: toranon
+    tor_owner: toranon
+
+- name: Ensure that the tor and torsocks packages are installed (RedHat)
+  tags: tor
+  become: true
+  yum:
+    enablerepo: epel
+    name: "{{ item }}"
+    state: present
+  register: tor_package
+  with_items:
+    - tor
+    - torsocks
+...

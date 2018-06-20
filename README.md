@@ -4,11 +4,11 @@
 [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-tor-blue.svg?style=flat)](https://galaxy.ansible.com/linuxhq/tor)
 [![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](COPYING)
 
-RHEL/CentOS - Anonymizing overlay network for TCP
+Linux - Anonymizing overlay network for TCP
 
 ## Requirements
 
-This role requires that you have the epel repository installed.
+This role requires that you have the epel repository installed, if RedHat.
 
  * https://galaxy.ansible.com/linuxhq/epel/
 
